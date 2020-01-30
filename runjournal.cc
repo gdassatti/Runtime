@@ -30,7 +30,7 @@ void Runjournal::record(Runtime run){
     } else {
 
         cout << "Error. The list has reached maximum capacity :/" << endl;
-        
+
     }
 
 }
@@ -179,7 +179,7 @@ string Runjournal::average_pace()const{
     for(size_t i = 0; i < used; i++){
 
         tot_distance += data[i].get_distance;
-        tmp.set_time(tmp.get_time() + data[i].get_time())
+        tmp.set_time(tmp.get_time() + data[i].get_time());
 
     }
 

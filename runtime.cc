@@ -11,6 +11,8 @@
 #include <iostream>
 using namespace std;
 
+
+
 Runtime::Runtime(){
 
     rtime = 0;
@@ -56,7 +58,7 @@ Runtime Runtime::operator /(const double& rhs)const{
 
 bool Runtime::operator ==(const Runtime& rhs)const{
 
-    if(rtime == rhs.rtime && distance == rhs.distance){
+    if(rtime.get_hours() == rhs.get_time().get_hours() && rtime.get_minutes() == rhs.get_time().get_minutes() && rtime.get_seconds() == rhs.get_time().get_seconds() && abs(distance - rhs.distance) < .10){
 
         return true;
 
@@ -70,44 +72,69 @@ bool Runtime::operator ==(const Runtime& rhs)const{
 
 bool Runtime::operator !=(const Runtime& rhs)const{
 
-    if(rtime != rhs.rtime && distance != rhs.distance){
-
-        return true;
-
-    }else{
+    if(rtime.get_hours() == rhs.get_time().get_hours() && rtime.get_minutes() == rhs.get_time().get_minutes() && rtime.get_seconds() == rhs.get_time().get_seconds() && abs(distance - rhs.distance) < .10){
 
         return false;
 
-    }
-
-}
-
-bool Runtime::distance_equal(double d)const{
-
-    if(distance == d){
+    }else{
 
         return true;
 
     }
+
+}
+
+bool Runtime::distance_equal(double d)const{ // done
+
+    if(abs(distance - d) > .10){
+
+        return false;
+
+    } else {
+
+        return true;
+
+    }
+
+}
+
+void Runtime::input(std::istream& ins){
     
+    char c;
+
+    ins >> rtime;
+    ins.get(c);
+    ins >> distance;
+
 }
 
-void Runtime::input(istream& ins){
-    // do something
-}
+void Runtime::output(std::ostream& outs)const{
 
-void Runtime::output(ostream& outs)const{
-    // do something
+    outs << rtime;
+    outs << "   ";
+    outs << distance; 
+
 }
 
 Runtime operator *(const double& lhs, const Runtime& rhs){
-    // do something
+    
+    Runtime tmp;
+    tmp.set_time(lhs * rhs.get_time());
+    tmp.set_distance(lhs * rhs.get_distance());
+    return tmp;
+
 }
 
 ostream& operator <<(std::ostream& outs, const Runtime& rhs){
-    // do something
+    
+    rhs.output(outs);
+    return outs;
+
 }
 
 istream& operator >>(std::istream& ins, Runtime& rhs){
-    // do something
+    
+    rhs.input(ins);
+    return ins;
+
 }
