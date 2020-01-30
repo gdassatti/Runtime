@@ -16,14 +16,18 @@ class Runtime{
     public:
 
 		Runtime();
+
 		// accessors
 		double get_distance()const{return distance;}
 		MyTime get_time()const{return rtime;}
+
 		// mutators
 		void set_time(const MyTime& myt){rtime = myt;}
 		void set_distance(const double& d){distance = d;}
+
 		// average pace
 		MyTime pace(){return rtime/distance;}
+
 		// overloaded operators - do the math on both time and distance
 		Runtime operator +(const Runtime& rhs)const;
 		Runtime operator -(const Runtime& rhs)const;
@@ -37,6 +41,7 @@ class Runtime{
 		// Equality of doubles can be problematic - this returns true if they are
 		// within a tenth of a mile
 		bool distance_equal(double d) const;
+
 		// Input - Output
 		void input(std::istream& ins);
 		void output(std::ostream& outs)const;
@@ -47,13 +52,13 @@ class Runtime{
 		double distance;
 	};
 
-	// Non-member functions that work with this class
-	// This first one reverses the arguments for multiplication
+		// Non-member functions that work with this class
+		// This first one reverses the arguments for multiplication
 
 		Runtime operator *(const double& lhs, const Runtime& rhs);
 
 
-	// Stream operators
+		// Stream operators
 
 		std::ostream& operator <<(std::ostream& outs, const Runtime& rhs);
 		std::istream& operator >>(std::istream& ins, Runtime& rhs);
