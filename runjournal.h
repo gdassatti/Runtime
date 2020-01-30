@@ -18,7 +18,7 @@ class Runjournal{ // declaration of Runjournal class
     public:
 
         // constant used for the size of array
-        static const size_t CAPACITY = 100;
+        static const size_t CAPACITY = 200;
 
         // default constructor
         Runjournal();
